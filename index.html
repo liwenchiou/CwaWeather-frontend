@@ -4,20 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>燕雲天象錄</title>
+    <title>吉伊卡哇天氣報</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            /* 燕雲配色系統 */
-            --ink-black: #1a1a1a; /* 更深的濃墨 */
-            --ink-dark-gray: #4a4a4a;
-            --ink-light-gray: #8c9e9e;
-            --paper-bg: #f4f0e6; /* 宣紙底色 */
-            --accent-gold: #cba779; /* 古銅金 */
-            --accent-red: #a84236; /* 硃砂紅 */
+            /* 吉伊卡哇配色：柔和的馬卡龍色系 */
+            --bg-light-pink: #ffe0e6;   /* 主背景淺粉 */
+            --bg-cream: #fff7e6;        /* 卡片背景米白 */
+            --text-dark: #3a3a5a;       /* 深藍色文字 */
+            --text-medium: #6a6a8a;     /* 中等藍文字 */
+            --accent-pink: #ff99aa;     /* 吉伊卡哇粉 */
+            --accent-blue: #aaddff;     /* 淺藍 */
+            --accent-yellow: #ffeecc;   /* 淺黃 */
+            --shadow-color: rgba(0, 0, 0, 0.08); /* 柔和陰影 */
+            --border-color-light: #ffcce0; /* 淺色邊框 */
+            --border-color-dark: #ff88b0; /* 深色邊框 */
         }
 
         * {
@@ -28,269 +32,277 @@
         }
 
         body {
-            font-family: 'Noto Serif TC', serif;
-            background-color: var(--paper-bg);
-            color: var(--ink-black);
+            font-family: 'Zen Maru Gothic', 'Hachi Maru Pop', sans-serif;
+            background-color: var(--bg-light-pink);
+            color: var(--text-dark);
             min-height: 100vh;
             overflow-x: hidden;
             padding-bottom: 30px;
             position: relative;
-            /* 原本的水墨暈染保留在 body 上 */
-            background-image: 
-                radial-gradient(circle at 30% 40%, rgba(0,0,0,0.04) 0%, transparent 60%),
-                radial-gradient(circle at 80% 80%, rgba(140, 158, 158, 0.08) 0%, transparent 50%);
-            background-size: cover;
-            background-attachment: fixed; /* 讓暈染背景固定 */
+            /* 圖片佔位符 */
+            background-image: linear-gradient(45deg, var(--bg-light-pink) 25%, var(--accent-yellow) 25%, var(--accent-yellow) 50%, var(--bg-light-pink) 50%, var(--bg-light-pink) 75%, var(--accent-yellow) 75%);
+            background-size: 80px 80px;
         }
 
-        /* --- 新增區域：背景圖片層 --- */
+        /* 吉伊卡哇角色背景圖 (佔位符) */
         body::after {
-            content: "";
-            position: fixed; /* 固定背景，不隨捲動移動，製造景深感 */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2; /* 放在最底層 (紙張紋理在 -1) */
-
-            /* 這裡使用一張風格相近的潑墨山水圖作為示範 URL */
-            /* 如果您有《煙雲十六聲》的遊戲截圖，可以替換此處的 url */
-            background-image: url('https://images.unsplash.com/photo-1518012233640-61a36d5a452b?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-
-            /* 關鍵：將照片轉為水墨風格並融入宣紙 */
-            /* 1. grayscale: 轉黑白 */
-            /* 2. contrast/brightness: 調整對比亮度，模仿水墨深淺 */
-            /* 3. blur: 微量模糊，製造氤氳感 */
-            filter: grayscale(100%) contrast(90%) brightness(110%) blur(1px);
-            
-            /* 4. opacity: 降低透明度，不能搶了內容的風頭 */
-            opacity: 0.25; 
-            
-            /* 5. mix-blend-mode: multiply (色彩增值) 讓背景像印在紙上一樣自然 */
-            mix-blend-mode: multiply; 
-        }
-        /* --------------------------- */
-
-        /* 紙張紋理噪點層 (保持不變，層級 -1) */
-        body::before {
-            content: "";
+            content: "✨";
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
-            pointer-events: none;
+            bottom: 20px;
+            right: 20px;
+            font-size: 100px;
+            background: var(--accent-pink);
+            padding: 20px;
+            border-radius: 50%;
             z-index: -1;
-            mix-blend-mode: multiply;
+            opacity: 0.7;
+            pointer-events: none;
+            transform: rotate(15deg); 
+            filter: drop-shadow(5px 5px 10px var(--shadow-color));
         }
 
         /* 頂部狀態列 */
         .status-bar {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            padding: 20px 25px;
-            /* 增加頂部狀態列的背景不透明度，確保文字清晰 */
-            background: linear-gradient(to bottom, rgba(244, 240, 230, 0.98), rgba(244, 240, 230, 0.85));
+            padding: 15px 20px 10px;
+            background: linear-gradient(to bottom, var(--bg-cream), rgba(255, 247, 230, 0.8));
+            border-bottom: 3px dashed var(--border-color-light); 
             position: sticky;
             top: 0;
             z-index: 100;
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid rgba(0,0,0,0.08);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            box-shadow: 0 4px 10px var(--shadow-color);
+            border-radius: 0 0 20px 20px; 
         }
 
+        /* 吉伊卡哇風格的地點選擇 */
         .location-pill {
-            font-family: 'ZCOOL XiaoWei', serif;
-            color: var(--ink-black);
-            font-size: 1.3rem;
             display: flex;
             align-items: center;
-            gap: 8px;
-            text-shadow: 0 0 2px rgba(255,255,255,0.5);
+            gap: 10px;
+            margin-bottom: 8px;
         }
 
-        .location-seal {
-            display: inline-block;
-            background-color: var(--accent-red);
-            color: var(--paper-bg);
-            font-size: 0.8rem;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-weight: bold;
-            box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
-            transform: rotate(-5deg);
+        .chii-icon {
+            font-size: 1.8rem;
+            transform: rotate(-10deg);
+            margin-right: 5px;
+            color: var(--accent-pink);
+        }
+        
+        /* 修正後的元素樣式 */
+        #locationLabel { 
+            font-family: 'Hachi Maru Pop', cursive;
+            font-size: 1.4rem;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        /* 下拉選單樣式 */
+        .city-select-container {
+            position: relative;
+            margin-left: 10px;
+        }
+
+        #citySelect {
+            appearance: none;
+            background: var(--accent-yellow);
+            border: 3px solid var(--border-color-dark); 
+            padding: 8px 35px 8px 15px;
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            border-radius: 15px; 
+            font-family: 'Hachi Maru Pop', cursive;
+            box-shadow: 2px 2px 5px var(--shadow-color);
+            transition: all 0.2s ease;
+            text-align: center;
+            text-align-last: center;
+        }
+
+        #citySelect:focus {
+            outline: none;
+            border-color: var(--accent-pink);
+            box-shadow: 0 0 10px rgba(255, 153, 170, 0.6);
+        }
+
+        /* 箭頭裝飾 */
+        .city-select-container::after {
+            content: '▼';
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%) rotate(0deg); 
+            font-size: 0.9rem;
+            color: var(--text-medium);
+            pointer-events: none;
+            opacity: 0.8;
         }
 
         .update-pill {
-            font-size: 0.85rem;
-            color: var(--ink-dark-gray);
-            letter-spacing: 1px;
-            font-weight: 600;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-medium);
+            text-align: center;
+            background-color: var(--accent-blue);
+            padding: 5px 10px;
+            border-radius: 10px;
+            box-shadow: 1px 1px 3px var(--shadow-color);
+            margin-top: 5px;
         }
 
         .container {
-            padding: 20px 25px;
+            padding: 20px;
             max-width: 600px;
-            margin: 0 auto;
+            margin: 20px auto;
             position: relative;
-            z-index: 1; /* 確保內容在背景之上 */
+            z-index: 1;
         }
 
-        /* === 核心：今日焦點卡片 === */
+        /* === 核心卡片 - 吉伊卡哇風格 === */
         .hero-card {
-            /* 稍微增加卡片背景的不透明度，讓內容更突出 */
-            background: rgba(250, 248, 242, 0.65);
-            border-radius: 12px;
-            padding: 40px 30px;
+            background: var(--bg-cream);
+            border: 5px solid var(--border-color-dark); 
+            border-radius: 30px; 
+            padding: 35px 25px;
             text-align: center;
-            margin-bottom: 35px;
+            margin-bottom: 30px;
             position: relative;
-            box-shadow: 
-                0 5px 20px rgba(0,0,0,0.1),
-                inset 0 0 80px rgba(224, 220, 210, 0.4);
-            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 8px 8px 0px var(--accent-pink), 12px 12px 0px var(--shadow-color);
             overflow: hidden;
-            backdrop-filter: blur(5px); /* 增加磨砂感 */
         }
 
-        /* 卡片內部的水墨流動裝飾 (加強) */
-        .hero-card::after {
-            content: "";
+        /* 卡片內部裝飾 - 小花/星星 */
+        .hero-card::before, .hero-card::after {
+            content: "🌸"; 
             position: absolute;
-            bottom: -30%; left: -20%;
-            width: 150%; height: 80%;
-            background: radial-gradient(ellipse at center, var(--ink-light-gray) 0%, transparent 70%);
-            opacity: 0.2;
-            filter: blur(35px);
-            transform: rotate(-15deg);
-            pointer-events: none;
+            color: var(--accent-pink);
+            font-size: 2rem;
+            opacity: 0.7;
+            filter: drop-shadow(2px 2px 1px rgba(0,0,0,0.1));
         }
+        .hero-card::before { top: 15px; left: 15px; transform: rotate(-20deg); }
+        .hero-card::after { top: 15px; right: 15px; transform: rotate(15deg); }
 
         .hero-period {
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--accent-gold);
-            font-weight: bold;
-            font-family: 'ZCOOL XiaoWei', serif;
-            font-size: 1.1rem;
-            letter-spacing: 3px;
-            display: flex;
-            align-items: center;
-            text-shadow: 0 1px 1px rgba(0,0,0,0.1);
-        }
-        .hero-period::before, .hero-period::after {
-            content: "";
-            display: block;
-            width: 30px;
-            height: 1px;
-            background: var(--accent-gold);
-            margin: 0 10px;
-            opacity: 0.6;
+            display: inline-block;
+            background-color: var(--accent-blue);
+            color: var(--text-dark);
+            padding: 8px 20px;
+            font-family: 'Hachi Maru Pop', cursive;
+            font-size: 1.2rem;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 2px 2px 5px var(--shadow-color);
         }
 
         .hero-temp-container {
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            margin: 35px 0 15px;
-            position: relative;
+            margin: 20px 0;
         }
 
         .hero-icon {
-            font-size: 6rem;
-            filter: grayscale(100%) contrast(130%) brightness(85%) sepia(20%);
-            opacity: 0.9;
-            margin-bottom: -25px;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            position: relative;
-            z-index: 1;
+            font-size: 5rem;
+            margin-bottom: 10px;
+            filter: drop-shadow(3px 3px 5px var(--shadow-color));
+            animation: bounce-icon 2s infinite ease-in-out;
+        }
+        @keyframes bounce-icon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
         .hero-temp {
-            font-family: 'Noto Serif TC', serif;
-            font-size: 5.5rem;
-            font-weight: 900;
-            color: var(--ink-black);
+            font-family: 'Hachi Maru Pop', cursive;
+            font-size: 5rem;
+            color: var(--text-dark);
             line-height: 1;
-            position: relative;
-            z-index: 2;
-            text-shadow: 2px 2px 0px var(--paper-bg), 0 5px 10px rgba(0,0,0,0.1);
+            text-shadow: 3px 3px 0px var(--accent-yellow), 5px 5px 0px var(--shadow-color);
+            margin-top: -10px;
         }
 
         .hero-desc {
             font-size: 1.6rem;
-            color: var(--ink-dark-gray);
-            margin-bottom: 30px;
-            font-weight: bold;
-            font-family: 'ZCOOL XiaoWei', serif;
-            letter-spacing: 2px;
+            color: var(--text-dark);
+            font-weight: 700;
+            font-family: 'Hachi Maru Pop', cursive;
+            margin-top: 15px;
+            text-shadow: 1px 1px 0 var(--bg-cream);
         }
 
         /* === 建議區 === */
         .advice-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 25px;
+            gap: 18px;
             margin-top: 30px;
-            padding-top: 30px;
-            background-image: linear-gradient(to right, transparent, var(--ink-light-gray), transparent);
-            background-size: 100% 1px;
-            background-repeat: no-repeat;
-            background-position: top center;
-            opacity: 0.9;
+            padding-top: 25px;
+            border-top: 2px dashed var(--border-color-light); 
         }
 
         .advice-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            background: var(--accent-yellow);
+            border: 3px solid var(--border-color-dark);
+            border-radius: 20px;
+            padding: 15px 10px;
             position: relative;
+            box-shadow: 3px 3px 0px var(--accent-pink), 5px 5px 0px var(--shadow-color);
+            text-align: center;
+        }
+        
+        .advice-item::before {
+            content: "✨";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%) rotate(10deg);
+            font-size: 1.5rem;
+            opacity: 0.8;
         }
 
         .advice-header {
             font-size: 0.9rem;
-            color: var(--accent-gold);
-            margin-bottom: 8px;
-            font-weight: bold;
+            color: var(--text-medium);
+            margin-bottom: 5px;
+            font-weight: 700;
         }
 
         .advice-text {
-            font-size: 1.3rem;
-            font-weight: 900;
-            color: var(--ink-black);
-            line-height: 1.3;
+            font-family: 'Hachi Maru Pop', cursive;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1.2;
         }
 
         .advice-sub {
             font-size: 0.85rem;
-            color: var(--ink-dark-gray);
+            color: var(--text-medium);
             margin-top: 5px;
         }
 
         /* === 稍後預報 === */
         .section-title {
-            font-family: 'ZCOOL XiaoWei', serif;
-            font-size: 1.4rem;
-            color: var(--ink-black);
-            margin-bottom: 20px;
-            margin-left: 10px;
-            font-weight: 900;
-            letter-spacing: 2px;
+            font-family: 'Hachi Maru Pop', cursive;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin: 30px 0 20px 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
             display: flex;
             align-items: center;
-            text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+            text-shadow: 1px 1px 0 var(--bg-cream);
         }
         
         .section-title::before {
-            content: "◈";
+            content: "💖"; 
             margin-right: 10px;
-            font-size: 1rem;
-            color: var(--accent-gold);
+            font-size: 1.2rem;
+            color: var(--accent-pink);
+            transform: rotate(-10deg);
         }
 
         .scroll-container {
@@ -299,7 +311,6 @@
             gap: 15px;
             padding: 10px 5px 25px 5px;
             scrollbar-width: none;
-            /* 調整遮罩，讓兩側的卡片消失得更自然 */
             mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
             -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
         }
@@ -309,105 +320,97 @@
         }
 
         .mini-card {
-            min-width: 125px;
-            /* 增加小卡片背景不透明度 */
-            background: rgba(252, 250, 245, 0.6);
-            background-image: linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px);
-            background-size: 12px 100%;
-            
-            border-radius: 6px;
-            padding: 20px 15px;
+            min-width: 120px;
+            background: var(--bg-cream);
+            border: 3px solid var(--border-color-light);
+            border-radius: 25px;
+            padding: 18px 10px;
             text-align: center;
             flex-shrink: 0;
             position: relative;
-            border: 1px solid rgba(0,0,0,0.08);
-            box-shadow: 2px 4px 12px rgba(0,0,0,0.06);
-            backdrop-filter: blur(3px);
+            box-shadow: 4px 4px 0px var(--accent-blue), 6px 6px 0px var(--shadow-color);
         }
         
         .mini-card::before {
-            content: "";
+            content: "☁️"; 
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 5px;
-            background: var(--ink-light-gray);
-            opacity: 0.4;
-            border-radius: 6px 6px 0 0;
+            top: -10px; left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2rem;
+            color: var(--accent-blue);
+            opacity: 0.7;
         }
 
         .mini-time {
-            font-family: 'ZCOOL XiaoWei', serif;
-            color: var(--ink-black);
-            font-size: 1.05rem;
-            margin-bottom: 15px;
+            font-family: 'Hachi Maru Pop', cursive;
+            color: var(--text-dark);
+            font-size: 1rem;
+            margin-bottom: 12px;
             display: block;
-            font-weight: bold;
+            font-weight: 700;
         }
 
         .mini-icon {
-            font-size: 2.2rem;
-            margin: 10px 0;
-            filter: grayscale(100%) contrast(120%) brightness(90%) sepia(20%);
-            opacity: 0.85;
+            font-size: 2.5rem;
+            margin: 8px 0;
+            filter: drop-shadow(2px 2px 3px var(--shadow-color));
         }
 
         .mini-temp {
-            font-family: 'Noto Serif TC', serif;
-            font-size: 1.2rem;
-            font-weight: 900;
-            color: var(--ink-black);
+            font-family: 'Hachi Maru Pop', cursive;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-dark);
         }
 
         .rain-data {
-            font-size: 0.85rem; 
-            color: var(--ink-dark-gray);
-            margin-top: 8px;
-            font-weight: bold;
+            font-size: 0.8rem;
+            color: var(--text-medium);
+            margin-top: 6px;
+            font-weight: 700;
         }
 
-        /* Loading 畫面 */
+        /* Loading 畫面 - 吉伊卡哇風格 */
         .loading-screen {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: var(--paper-bg);
+            background: var(--bg-light-pink);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 999;
-            /* Loading 畫面也要有淡淡的背景透視 */
-            background-image: 
-                radial-gradient(circle at 50% 50%, rgba(255,255,255,0.8) 0%, transparent 100%),
-                url('https://images.unsplash.com/photo-1518012233640-61a36d5a452b?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-            background-size: cover;
-            background-position: center;
-            background-blend-mode: overlay;
             transition: opacity 0.8s ease-out;
-        }
-        
-        .ink-spinner {
-            width: 70px;
-            height: 70px;
-            background-color: var(--ink-black);
-            border-radius: 50%;
-            animation: ink-pulse 2.5s infinite ease-in-out;
-            filter: blur(12px);
-            opacity: 0.8;
+            /* 圖片佔位符 */
+            background-image: repeating-linear-gradient(45deg, var(--bg-light-pink), var(--bg-light-pink) 10px, var(--accent-blue) 10px, var(--accent-blue) 20px);
+            background-size: 150px 150px;
         }
 
-        @keyframes ink-pulse {
-            0% { transform: scale(0.6); opacity: 0.7; }
-            50% { transform: scale(1.3); opacity: 0.3; }
-            100% { transform: scale(0.6); opacity: 0.7; }
+        /* 吉伊卡哇角色 Loading 動畫 (佔位符) */
+        .chii-loading-char {
+            width: 100px;
+            height: 100px;
+            /* 使用 CSS 模擬可愛的轉圈 */
+            border: 10px solid var(--accent-pink);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: chii-spin 1.5s linear infinite;
+            box-shadow: 5px 5px 10px var(--shadow-color);
+            margin-bottom: 20px;
+        }
+
+        @keyframes chii-spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .loading-text {
-            margin-top: 35px;
-            color: var(--ink-black);
-            font-family: 'ZCOOL XiaoWei', serif;
-            font-size: 1.3rem;
-            letter-spacing: 5px;
-            font-weight: bold;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-top: 15px;
+            font-family: 'Hachi Maru Pop', cursive;
+            font-size: 1.6rem;
+            color: var(--text-dark);
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 0 var(--accent-yellow);
         }
 
     </style>
@@ -415,53 +418,74 @@
 
 <body>
     <div id="loading" class="loading-screen">
-        <div class="ink-spinner"></div>
-        <p class="loading-text">天地氣韻‧匯聚中</p>
+        <div class="chii-loading-char"></div>
+        <p class="loading-text">吉伊卡哇努力讀取中...</p>
     </div>
 
     <div class="status-bar">
-        <div class="location-pill"><span class="location-seal">境</span> 桃源所在</div>
-        <div id="updateTime" class="update-pill">天時校準中...</div>
+        <div class="location-pill">
+            <span class="chii-icon">🎀</span> 
+            <span id="locationLabel">臺北市的天氣</span> 
+            <div class="city-select-container">
+                <select id="citySelect" onchange="handleCityChange()">
+                    </select>
+            </div>
+        </div>
+        <div id="updateTime" class="update-pill">嗯...現在是？</div>
     </div>
 
     <div class="container" id="mainContent" style="display: none;">
 
         <div id="heroCard"></div>
 
-        <h3 class="section-title">未來時辰預測</h3>
+        <h3 class="section-title">再來是...</h3>
         <div class="scroll-container" id="futureForecasts"></div>
 
     </div>
 
     <script>
-        const API_URL = "https://liwen-weather-backend.zeabur.app/api/weather/kaohsiung";
+        const BASE_API_URL = "https://liwen-weather-backend.zeabur.app/api/weather/";
+        let currentCity = "臺北市"; 
 
+        const TAIWAN_CITIES = [
+            "臺北市", "新北市", "桃園市", "臺中市", "臺南市", "高雄市", 
+            "基隆市", "新竹市", "嘉義市", 
+            "新竹縣", "苗栗縣", "彰化縣", "南投縣", "雲林縣", "嘉義縣", 
+            "屏東縣", "宜蘭縣", "花蓮縣", "臺東縣", "澎湖縣", "金門縣", "連江縣"
+        ];
+        
         function getWeatherIcon(weather) {
-            if (!weather) return "☁️";
+            if (!weather) return "❓"; 
             if (weather.includes("晴")) return "☀️";
-            if (weather.includes("多雲")) return "⛅";
+            if (weather.includes("多雲")) return "☁️";
             if (weather.includes("陰")) return "☁️";
-            if (weather.includes("雨")) return "🌧️";
-            if (weather.includes("雷")) return "⛈️";
-            return "🌤️";
+            if (weather.includes("雨")) return "☔";
+            if (weather.includes("雷")) return "⚡";
+            return "🌤️"; 
         }
 
         function getAdvice(rainProb, maxTemp) {
-            let rainText = "天乾物燥";
-            let rainSub = "無需帶傘";
-            if (parseInt(rainProb) > 30) {
-                rainText = "有雨將至";
-                rainSub = "出行宜備傘";
+            const rainValue = parseInt(rainProb);
+            const maxValue = parseInt(maxTemp);
+
+            let rainText = "沒有下雨耶！";
+            let rainSub = "可以出去玩！";
+            if (rainValue > 30) {
+                rainText = "好像要下雨了！";
+                rainSub = "帶傘傘比較好！";
+            } else if (rainValue > 0) {
+                 rainText = "可能會有小水滴？";
+                 rainSub = "稍微注意一下喔！";
             }
 
-            let clothText = "氣候宜人";
-            let clothSub = "穿著舒適即可";
-            if (parseInt(maxTemp) >= 28) {
-                clothText = "炎威仍盛";
-                clothSub = "宜著輕衫避暑";
-            } else if (parseInt(maxTemp) <= 20) {
-                clothText = "寒氣漸生";
-                clothSub = "宜添衣保暖";
+            let clothText = "天氣好好喔！";
+            let clothSub = "穿什麼都舒服！";
+            if (maxValue >= 28) {
+                clothText = "好熱喔...融化了";
+                clothSub = "穿涼爽一點才好！";
+            } else if (maxValue <= 20) {
+                clothText = "有點冷颼颼耶...";
+                clothSub = "要多穿一點喔！";
             }
 
             return { rainText, rainSub, clothText, clothSub };
@@ -469,12 +493,12 @@
 
         function getTimePeriod(startTime) {
             const hour = new Date(startTime).getHours();
-            if (hour >= 5 && hour < 11) return "清晨";
-            if (hour >= 11 && hour < 13) return "日中";
-            if (hour >= 13 && hour < 17) return "午後";
-            if (hour >= 17 && hour < 19) return "日暮";
-            if (hour >= 19 && hour < 23) return "入夜";
-            return "深夜";
+            if (hour >= 5 && hour < 11) return "早上時間";
+            if (hour >= 11 && hour < 13) return "中午時間";
+            if (hour >= 13 && hour < 17) return "下午時間";
+            if (hour >= 17 && hour < 19) return "傍晚時間";
+            if (hour >= 19 && hour < 23) return "晚上時間";
+            return "深夜時間";
         }
 
         function renderWeather(data) {
@@ -482,27 +506,34 @@
             const current = forecasts[0];
             const others = forecasts.slice(1);
 
+            // ⭐ 修正點 2: 使用 ID 查找，並更新內容 ⭐
+            document.getElementById('locationLabel').textContent = data.city + '的天氣'; 
+            
             const advice = getAdvice(current.rain, current.maxTemp);
             const period = getTimePeriod(current.startTime);
-            const avgTemp = Math.round((parseInt(current.maxTemp) + parseInt(current.minTemp)) / 2);
+            
+            const minT = parseInt(current.minTemp);
+            const maxT = parseInt(current.maxTemp);
+            const rainValue = parseInt(current.rain);
+            const avgTemp = Math.round((minT + maxT) / 2);
 
             document.getElementById('heroCard').innerHTML = `
                 <div class="hero-card">
-                    <div class="hero-period">${period}天色</div>
+                    <div class="hero-period">${period}</div>
                     <div class="hero-temp-container">
                         <div class="hero-icon">${getWeatherIcon(current.weather)}</div>
-                        <div class="hero-temp">${avgTemp}°</div>
+                        <div class="hero-temp">${avgTemp}</div>
                     </div>
                     <div class="hero-desc">${current.weather}</div>
                     
                     <div class="advice-grid">
                         <div class="advice-item">
-                            <div class="advice-header">降水機率 ${current.rain}</div>
+                            <div class="advice-header">下雨機率 ${rainValue}</div>
                             <div class="advice-text">${advice.rainText}</div>
                             <div class="advice-sub">${advice.rainSub}</div>
                         </div>
                         <div class="advice-item">
-                            <div class="advice-header">最高氣溫 ${current.maxTemp}</div>
+                            <div class="advice-header">最高溫度 ${maxT}</div>
                             <div class="advice-text">${advice.clothText}</div>
                             <div class="advice-sub">${advice.clothSub}</div>
                         </div>
@@ -517,18 +548,22 @@
             others.forEach(f => {
                 let p = getTimePeriod(f.startTime);
                 const fDate = new Date(f.startTime);
-                let dayLabel = "今日";
+                let dayLabel = "今天";
                 
                 if (fDate.getDate() !== todayDate) {
-                    dayLabel = "明日";
+                    dayLabel = "明天";
                 }
+
+                const miniMinT = parseInt(f.minTemp);
+                const miniMaxT = parseInt(f.maxTemp);
+                const miniRain = parseInt(f.rain);
 
                 scrollContainer.innerHTML += `
                     <div class="mini-card">
-                        <div class="mini-time">${dayLabel}‧${p}</div>
+                        <div class="mini-time">${dayLabel}的${p}</div>
                         <div class="mini-icon">${getWeatherIcon(f.weather)}</div>
-                        <div class="mini-temp">${f.minTemp}° - ${f.maxTemp}°</div>
-                        <div class="rain-data">降水 ${f.rain}</div>
+                        <div class="mini-temp">${miniMinT} - ${miniMaxT}</div>
+                        <div class="rain-data">下雨 ${miniRain}</div>
                     </div>
                 `;
             });
@@ -536,38 +571,82 @@
             const now = new Date();
             const month = now.getMonth() + 1;
             const date = now.getDate();
-            const dayIndex = now.getDay();
-            const days = ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"];
-            
-            document.getElementById('updateTime').innerHTML = `發布於 ${month}月${date}日 ${days[dayIndex]}`;
+            const timeStr = now.toLocaleTimeString('zh-TW', {hour: '2-digit', minute:'2-digit'});
+            document.getElementById('updateTime').innerHTML = `嗯...現在是 ${month}月${date}日 ${timeStr}`;
+        }
+
+        // 載入縣市選單
+        function loadCities() {
+            const selectElement = document.getElementById('citySelect');
+            TAIWAN_CITIES.forEach(city => {
+                const option = document.createElement('option');
+                option.value = city;
+                option.textContent = city;
+                if (city === currentCity) {
+                    option.selected = true;
+                }
+                selectElement.appendChild(option);
+            });
+        }
+        
+        // 處理縣市選擇變化
+        function handleCityChange() {
+            const selectElement = document.getElementById('citySelect');
+            currentCity = selectElement.value;
+            // 每次點擊後，觸發 loading 畫面並重新抓取資料
+            document.getElementById('mainContent').style.display = 'none';
+            document.getElementById('loading').style.opacity = '1';
+            document.getElementById('loading').style.display = 'flex';
+            document.querySelector('.loading-text').innerText = "吉伊卡哇努力讀取中...";
+            fetchWeather();
         }
 
         async function fetchWeather() {
-            try {
-                // 延長載入時間以展示更有氛圍的 Loading 畫面
-                const delayPromise = new Promise(resolve => setTimeout(resolve, 2500)); 
-                const fetchPromise = fetch(API_URL).then(res => res.json());
+            const API_URL = BASE_API_URL + encodeURIComponent(currentCity);
 
-                const [_, json] = await Promise.all([delayPromise, fetchPromise]);
+            try {
+                const delayPromise = new Promise(resolve => setTimeout(resolve, 1000)); 
+                const response = await fetch(API_URL); // 檢查 Response
+
+                const [_, json] = await Promise.all([delayPromise, response.json()]);
 
                 if (json.success) {
                     renderWeather(json.data);
-                    // 使用淡出效果
                     document.getElementById('loading').style.opacity = '0';
                     setTimeout(() => {
                         document.getElementById('loading').style.display = 'none';
                         document.getElementById('mainContent').style.display = 'block';
-                    }, 800); // 等待淡出動畫結束
+                    }, 500); 
                 } else {
-                    throw new Error("API Error");
+                    // API 邏輯錯誤 (例如後端回傳 404 或自定義錯誤訊息)
+                    document.getElementById('loading').style.opacity = '0';
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('mainContent').style.display = 'block';
+                    
+                    document.getElementById('heroCard').innerHTML = `
+                        <div class="hero-card" style="padding: 20px;">
+                            <h2 style="color: var(--text-dark); font-family: 'Hachi Maru Pop', cursive;">呀？好像有點怪怪的？</h2>
+                            <p style="color: var(--text-medium); margin-top: 10px;">找不到這個地方的天氣情報，或是...出了什麼錯？</p>
+                            <p style="color: var(--text-medium); margin-top: 5px; font-size: 0.9rem;">後端訊息：${json.message || '未知錯誤'}。請再選一次看看呢？</p>
+                            <div style="font-size: 60px; margin-top: 15px;">🥺</div>
+                        </div>
+                    `;
                 }
             } catch (e) {
-                console.error(e);
-                document.querySelector('.loading-text').innerText = "雲氣阻滯，請稍後再試";
+                console.error("Fetch Error:", e);
+                // 真正的網路層級錯誤 (CORS, DNS, 連線失敗)
+                document.querySelector('.loading-text').innerText = "哎呀！網路不見了... QAQ";
+                setTimeout(() => {
+                    document.getElementById('loading').style.opacity = '0';
+                }, 1500);
             }
         }
 
-        document.addEventListener("DOMContentLoaded", fetchWeather);
+        document.addEventListener("DOMContentLoaded", () => {
+            currentCity = "臺北市"; 
+            loadCities();
+            fetchWeather();
+        });
     </script>
 </body>
 
